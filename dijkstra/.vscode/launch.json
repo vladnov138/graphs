@@ -1,0 +1,13 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/home/vladnov138/Desktop/graphs_deykstra/models/BFS",
+      "program": "/home/vladnov138/Desktop/graphs_deykstra/models/BFS/build/Debug/outDebug"
+    }
+  ]
+}
