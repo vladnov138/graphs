@@ -1,0 +1,9 @@
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/crosses_and_nulls.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/edit_cache.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/rebuild_cache.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/list_install_components.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/install.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/install/local.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/install/strip.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/crosses_and_nulls_autogen_timestamp_deps.dir
+/home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/CMakeFiles/crosses_and_nulls_autogen.dir
