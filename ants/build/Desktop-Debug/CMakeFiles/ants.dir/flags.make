@@ -4,7 +4,7 @@
 # compile CXX with /usr/bin/clang++-16
 CXX_DEFINES = 
 
-CXX_INCLUDES = 
+CXX_INCLUDES = -I/home/vladnov138/graphs/ants/libs/matplotlibcpp.h -I/usr/lib/python3/dist-packages/numpy/core/include -I/usr/include/python3.12
 
 CXX_FLAGS = -DQT_QML_DEBUG -g -std=gnu++17 -fcolor-diagnostics
 

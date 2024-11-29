@@ -1,10 +1,10 @@
 file(REMOVE_RECURSE
   "CMakeFiles/ants.dir/main.cpp.o"
   "CMakeFiles/ants.dir/main.cpp.o.d"
-  "CMakeFiles/ants.dir/models/Ant.cpp.o"
-  "CMakeFiles/ants.dir/models/Ant.cpp.o.d"
-  "CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o"
-  "CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o.d"
+  "CMakeFiles/ants.dir/models/Ant/Ant.cpp.o"
+  "CMakeFiles/ants.dir/models/Ant/Ant.cpp.o.d"
+  "CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o"
+  "CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o.d"
   "CMakeFiles/ants.dir/models/BFS/BFS.cpp.o"
   "CMakeFiles/ants.dir/models/BFS/BFS.cpp.o.d"
   "CMakeFiles/ants.dir/models/Graph/Graph.cpp.o"
@@ -17,8 +17,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/ants.dir/models/PriorityQueue/PriorityQueue.cpp.o.d"
   "CMakeFiles/ants.dir/models/Way.cpp.o"
   "CMakeFiles/ants.dir/models/Way.cpp.o.d"
-  "CMakeFiles/ants.dir/utils/utils.cpp.o"
-  "CMakeFiles/ants.dir/utils/utils.cpp.o.d"
   "ants"
   "ants.pdb"
 )

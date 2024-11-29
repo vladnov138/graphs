@@ -1,10 +1,13 @@
 #include "exceptions/FileNotOpenException.h"
-#include "models/AntColonyAlgorithm.h"
+#include "exceptions/ValidationException.h"
+#include "models/AntColonyAlgorithm/AntColonyAlgorithm.h"
 #include "models/Graph/Graph.h"
+#include "libs/matplotlibcpp.h"
 #include <iostream>
 #include <regex>
 
 using namespace std;
+namespace plt = matplotlibcpp;
 
 int main()
 {
@@ -18,22 +21,56 @@ int main()
         std::cout << "Некорректное имя файла!";
         return -1;
     }
+    const double ALPHA = 2.0;
+    const double BETA = 5.0;
+    const double PHERAMONE_HOLD_SPEED = 0.2;
+    const int MAX_ITERATIONS = 1000;
+    const int ANTS_COUNT = 100;
+
     try {
         Graph graph(filename);
-        AntColonyAlgorithm antColonyAlgorithm(graph);
+        AntColonyAlgorithm antColonyAlgorithm(graph, ALPHA, BETA, PHERAMONE_HOLD_SPEED, MAX_ITERATIONS);
         node_iterator begin = graph.begin();
-        Way shortest_way = antColonyAlgorithm.findWay(100, *begin);
-        std::vector<Node> wayNodes  = shortest_way.nodes;
+        std::map<int, Way> results = antColonyAlgorithm.findWay(ANTS_COUNT, *begin);
+
+        // Векторы для данных
+        std::vector<int> iterations;
+        std::vector<double> lengths;
+        Way finalWay;
+        // Заполнение векторов данными
+        for (const auto& [iteration, way] : results) {
+            iterations.push_back(iteration);
+            lengths.push_back(way.length);
+            finalWay = way;
+        }
+
+        if (finalWay.length <= 0) {
+            std::cout << "Путь не найден";
+            return -1;
+        }
+
+        // Отрисовка данных
+        plt::plot(iterations, lengths, "r-"); // "r-" — красная линия
+        plt::xlabel("Iterations");
+        plt::ylabel("Path Length");
+        plt::title("Path Length vs Iterations");
+        plt::show();
+
+        std::vector<Node> wayNodes  = finalWay.nodes;
         std:: cout << "Кратчайший путь: " << std::endl;
-        // Выводим в обратном порядке:
-        for (auto it = wayNodes.rbegin(); it != wayNodes.rend(); ++it) {
+        // Выводим:
+        for (auto it = wayNodes.begin(); it != wayNodes.end(); ++it) {
             std::cout << it->getName() << " ";
         }
         std::cout << std::endl;
-        std::cout << "Длина пути: " << shortest_way.length << std::endl;
+        std::cout << "Длина пути: " << finalWay.length << std::endl;
     } catch (FileNotOpenException) {
         std::cout << "Невозможно открыть файл. Убедитесь, что он существует";
         return -2;
+    } catch (ValidationException) {
+        std::cout << "Ошибка валидации. УБедитесь, что константы указаны верно";
+        return -3;
     }
+
     return 0;
 }

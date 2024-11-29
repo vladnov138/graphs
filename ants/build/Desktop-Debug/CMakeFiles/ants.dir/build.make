@@ -167,47 +167,33 @@ CMakeFiles/ants.dir/models/Way.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/models/Way.cpp.s"
 	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/models/Way.cpp -o CMakeFiles/ants.dir/models/Way.cpp.s
 
-CMakeFiles/ants.dir/models/Ant.cpp.o: CMakeFiles/ants.dir/flags.make
-CMakeFiles/ants.dir/models/Ant.cpp.o: /home/vladnov138/graphs/ants/models/Ant.cpp
-CMakeFiles/ants.dir/models/Ant.cpp.o: CMakeFiles/ants.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ants.dir/models/Ant.cpp.o"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ants.dir/models/Ant.cpp.o -MF CMakeFiles/ants.dir/models/Ant.cpp.o.d -o CMakeFiles/ants.dir/models/Ant.cpp.o -c /home/vladnov138/graphs/ants/models/Ant.cpp
+CMakeFiles/ants.dir/models/Ant/Ant.cpp.o: CMakeFiles/ants.dir/flags.make
+CMakeFiles/ants.dir/models/Ant/Ant.cpp.o: /home/vladnov138/graphs/ants/models/Ant/Ant.cpp
+CMakeFiles/ants.dir/models/Ant/Ant.cpp.o: CMakeFiles/ants.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_8) "Building CXX object CMakeFiles/ants.dir/models/Ant/Ant.cpp.o"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ants.dir/models/Ant/Ant.cpp.o -MF CMakeFiles/ants.dir/models/Ant/Ant.cpp.o.d -o CMakeFiles/ants.dir/models/Ant/Ant.cpp.o -c /home/vladnov138/graphs/ants/models/Ant/Ant.cpp
 
-CMakeFiles/ants.dir/models/Ant.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ants.dir/models/Ant.cpp.i"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vladnov138/graphs/ants/models/Ant.cpp > CMakeFiles/ants.dir/models/Ant.cpp.i
+CMakeFiles/ants.dir/models/Ant/Ant.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ants.dir/models/Ant/Ant.cpp.i"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vladnov138/graphs/ants/models/Ant/Ant.cpp > CMakeFiles/ants.dir/models/Ant/Ant.cpp.i
 
-CMakeFiles/ants.dir/models/Ant.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/models/Ant.cpp.s"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/models/Ant.cpp -o CMakeFiles/ants.dir/models/Ant.cpp.s
+CMakeFiles/ants.dir/models/Ant/Ant.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/models/Ant/Ant.cpp.s"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/models/Ant/Ant.cpp -o CMakeFiles/ants.dir/models/Ant/Ant.cpp.s
 
-CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o: CMakeFiles/ants.dir/flags.make
-CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o: /home/vladnov138/graphs/ants/models/AntColonyAlgorithm.cpp
-CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o: CMakeFiles/ants.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o -MF CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o.d -o CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o -c /home/vladnov138/graphs/ants/models/AntColonyAlgorithm.cpp
+CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o: CMakeFiles/ants.dir/flags.make
+CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o: /home/vladnov138/graphs/ants/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp
+CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o: CMakeFiles/ants.dir/compiler_depend.ts
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_9) "Building CXX object CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o -MF CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o.d -o CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o -c /home/vladnov138/graphs/ants/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp
 
-CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.i"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vladnov138/graphs/ants/models/AntColonyAlgorithm.cpp > CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.i
+CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.i"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vladnov138/graphs/ants/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp > CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.i
 
-CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.s"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/models/AntColonyAlgorithm.cpp -o CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.s
-
-CMakeFiles/ants.dir/utils/utils.cpp.o: CMakeFiles/ants.dir/flags.make
-CMakeFiles/ants.dir/utils/utils.cpp.o: /home/vladnov138/graphs/ants/utils/utils.cpp
-CMakeFiles/ants.dir/utils/utils.cpp.o: CMakeFiles/ants.dir/compiler_depend.ts
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Building CXX object CMakeFiles/ants.dir/utils/utils.cpp.o"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -MD -MT CMakeFiles/ants.dir/utils/utils.cpp.o -MF CMakeFiles/ants.dir/utils/utils.cpp.o.d -o CMakeFiles/ants.dir/utils/utils.cpp.o -c /home/vladnov138/graphs/ants/utils/utils.cpp
-
-CMakeFiles/ants.dir/utils/utils.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Preprocessing CXX source to CMakeFiles/ants.dir/utils/utils.cpp.i"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/vladnov138/graphs/ants/utils/utils.cpp > CMakeFiles/ants.dir/utils/utils.cpp.i
-
-CMakeFiles/ants.dir/utils/utils.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/utils/utils.cpp.s"
-	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/utils/utils.cpp -o CMakeFiles/ants.dir/utils/utils.cpp.s
+CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green "Compiling CXX source to assembly CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.s"
+	/usr/bin/clang++-16 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/vladnov138/graphs/ants/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp -o CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.s
 
 # Object files for target ants
 ants_OBJECTS = \
@@ -218,9 +204,8 @@ ants_OBJECTS = \
 "CMakeFiles/ants.dir/models/PriorityQueue/PriorityQueue.cpp.o" \
 "CMakeFiles/ants.dir/models/MarkedNode.cpp.o" \
 "CMakeFiles/ants.dir/models/Way.cpp.o" \
-"CMakeFiles/ants.dir/models/Ant.cpp.o" \
-"CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o" \
-"CMakeFiles/ants.dir/utils/utils.cpp.o"
+"CMakeFiles/ants.dir/models/Ant/Ant.cpp.o" \
+"CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o"
 
 # External object files for target ants
 ants_EXTERNAL_OBJECTS =
@@ -232,12 +217,12 @@ ants: CMakeFiles/ants.dir/models/Node/Node.cpp.o
 ants: CMakeFiles/ants.dir/models/PriorityQueue/PriorityQueue.cpp.o
 ants: CMakeFiles/ants.dir/models/MarkedNode.cpp.o
 ants: CMakeFiles/ants.dir/models/Way.cpp.o
-ants: CMakeFiles/ants.dir/models/Ant.cpp.o
-ants: CMakeFiles/ants.dir/models/AntColonyAlgorithm.cpp.o
-ants: CMakeFiles/ants.dir/utils/utils.cpp.o
+ants: CMakeFiles/ants.dir/models/Ant/Ant.cpp.o
+ants: CMakeFiles/ants.dir/models/AntColonyAlgorithm/AntColonyAlgorithm.cpp.o
 ants: CMakeFiles/ants.dir/build.make
+ants: /usr/lib/x86_64-linux-gnu/libpython3.12.so
 ants: CMakeFiles/ants.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_11) "Linking CXX executable ants"
+	@$(CMAKE_COMMAND) -E cmake_echo_color "--switch=$(COLOR)" --green --bold --progress-dir=/home/vladnov138/graphs/ants/build/Desktop-Debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_10) "Linking CXX executable ants"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/ants.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
