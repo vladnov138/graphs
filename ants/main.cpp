@@ -14,17 +14,17 @@ int main()
     setlocale(LC_ALL, "ru");
     std::cout << "Введите название файла:\n";
     std::string filename;
-    // std::cin >> filename;
-    filename = "/home/vladnov138/graphs/ants/data/synthetic.txt";
+    std::cin >> filename;
+    // filename = "/home/vladnov138/graphs/ants/data/synthetic.txt";
     std::regex rgx(".+\.(csv|txt)");
     if (!regex_match(filename, rgx)) {
         std::cout << "Некорректное имя файла!";
         return -1;
     }
     const double ALPHA = 2.0;
-    const double BETA = 5.0;
-    const double PHERAMONE_HOLD_SPEED = 0.2;
-    const int MAX_ITERATIONS = 1000;
+    const double BETA = 4.0;
+    const double PHERAMONE_HOLD_SPEED = 0.05;
+    const int MAX_ITERATIONS = 100;
     const int ANTS_COUNT = 100;
 
     try {

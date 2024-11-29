@@ -55,7 +55,7 @@ Node* Ant::chooseWay(const double alpha, const double beta) {
 // Генератор случайных чисел от 0 до 1
 double Ant::randomChoice() {
     std::uniform_real_distribution<> dist(0.0, 1.0);
-    std::default_random_engine re(std::chrono::system_clock::now().time_since_epoch().count());
+    static std::default_random_engine re(std::chrono::system_clock::now().time_since_epoch().count());
     return dist(re);
 }
 
