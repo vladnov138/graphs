@@ -10,11 +10,12 @@
 typedef std::set<Node*>::const_iterator node_iterator;
 class Graph{
 private:
-   std::set<Node*> nodes;
+    std::set<Node*> nodes;
+    bool isDirectional;
 public:
     Graph();
     Graph(const Graph* graph);
-    Graph(const std::string filename);
+    Graph(const std::string filename, bool isDirectional);
     void addNode(Node* node);
     void removeNode(Node* node);
     void addEdge(Node* begin, Node* end, int weight);

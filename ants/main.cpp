@@ -14,8 +14,8 @@ int main()
     setlocale(LC_ALL, "ru");
     std::cout << "Введите название файла:\n";
     std::string filename;
-    std::cin >> filename;
-    // filename = "/home/vladnov138/graphs/ants/data/synthetic.txt";
+    // std::cin >> filename;
+    filename = "/home/vladnov138/graphs/ants/data/synthetic.txt";
     std::regex rgx(".+\.(csv|txt)");
     if (!regex_match(filename, rgx)) {
         std::cout << "Некорректное имя файла!";
@@ -26,9 +26,10 @@ int main()
     const double PHERAMONE_HOLD_SPEED = 0.05;
     const int MAX_ITERATIONS = 100;
     const int ANTS_COUNT = 100;
+    const bool isDirectional = true;
 
     try {
-        Graph graph(filename);
+        Graph graph(filename, isDirectional);
         AntColonyAlgorithm antColonyAlgorithm(graph, ALPHA, BETA, PHERAMONE_HOLD_SPEED, MAX_ITERATIONS);
         node_iterator begin = graph.begin();
         std::map<int, Way> results = antColonyAlgorithm.findWay(ANTS_COUNT, *begin);

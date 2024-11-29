@@ -8,8 +8,9 @@ Graph::Graph(const Graph *graph)
     nodes = (*graph).nodes;
 }
 
-Graph::Graph(const std::string filename)
+Graph::Graph(const std::string filename, bool isDirectional)
 {
+    this->isDirectional = isDirectional;
     std::ifstream file(filename);
     if (!file.is_open())
     {
@@ -80,7 +81,9 @@ void Graph::addEdge(Node *begin, Node *end, int weight)
     }
     if (begin != end) {
         begin->addNeighbour(end, weight);
-        // end->addNeighbour(begin, weight);
+        if (!isDirectional) {
+            end->addNeighbour(begin, weight);
+        }
     }
 }
 
