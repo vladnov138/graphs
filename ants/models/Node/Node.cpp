@@ -8,7 +8,7 @@ void Node::addNeighbour(Node* neighbour, int weight) {
     }
     neighbours.insert(neighbour);
     neighbours_weights[neighbour] = weight;
-    neighbours_pheramones[neighbour] = 1.0;
+    neighbours_pheramones[neighbour] = 0.01;
 }
 
 void Node::removeNeighbour(Node* neighbour) {
@@ -41,6 +41,9 @@ const double Node::getPheramone(Node* node) const {
 
 void Node::setPheramone(Node* node, double delta) {
     auto it = neighbours_pheramones.find(node);
+    if (delta < 0.01) {
+        delta = 0.01;
+    }
     if (it != neighbours_pheramones.end()) {
         it->second = delta;
     } else {
