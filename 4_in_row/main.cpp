@@ -1,4 +1,4 @@
-#include "gamecontroller.h"
+#include "src/gamecontroller/gamecontroller.h"
 
 #include <QGuiApplication>
 #include <QQmlApplicationEngine>

@@ -323,14 +323,15 @@ int AlphaBeta::getBestMove(BoardCell* board) {
         this->board[i] = board[i];
         vector.push_back(board[i]);
     }
-    boardsState.clear();
-    boardScores.clear();
     // Получаем лучший ход через getMovesBranch
     std::vector<int> result = getMovesBranch(0, true);
     int score = result[0];
     auto it = std::find(boardScores.begin(), boardScores.end(), score);
     auto b = it - boardScores.begin();
     delete[] this->board;
+    vector.clear();
+    boardsState.clear();
+    boardScores.clear();
     return result[1]; // Возвращаем индекс лучшего хода
 }
 
