@@ -4,7 +4,8 @@
 #include <queue>
 
 AntColonyAlgorithm::AntColonyAlgorithm(const Graph& agraph, const double alpha, const double beta,
-                                       const double pheramoneHoldSpeed, const unsigned int maxIterations) : graph(agraph) {
+                                       const double pheramoneHoldSpeed, const unsigned int maxIterations,
+                                       const bool isDirectional) : graph(agraph) {
     if (alpha < 0 || beta < 0 || pheramoneHoldSpeed < 0 || pheramoneHoldSpeed > 1 || maxIterations == 0) {
         throw ValidationException();
     }
@@ -12,6 +13,7 @@ AntColonyAlgorithm::AntColonyAlgorithm(const Graph& agraph, const double alpha, 
     this->beta = beta;
     this->pheramoneHoldSpeed = pheramoneHoldSpeed;
     this->maxIterations = maxIterations;
+    this->isDirectional = isDirectional;
 }
 
 // Функция симуляции муравьев
@@ -82,10 +84,12 @@ void AntColonyAlgorithm::updatePheramones(Node* begin, std::map<std::pair<std::s
         // Итерация по соседям текущего узла
         for (node_iterator it = currentNode->nb_begin(); it != currentNode->nb_end(); ++it) {
             Node* neighbor = *it;
-            std::pair<Node*, Node*> edge = {currentNode, neighbor};
 
-            // Пропускаем уже обновленные ребра
-            if (updatedEdges.find(edge) != updatedEdges.end()) {
+            // Пропускаем уже обновленные ребра при ненаправленном графе
+            std::pair<Node*, Node*> edge = {currentNode, neighbor};
+            std::pair<Node*, Node*> reversedEdge = {neighbor, currentNode};
+            if (updatedEdges.find(edge) != updatedEdges.end() ||
+                !isDirectional && updatedEdges.find(reversedEdge) != updatedEdges.end()) {
                 continue;
             }
 

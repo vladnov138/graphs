@@ -48,35 +48,37 @@ int main()
         AntColonyAlgorithm antColonyAlgorithm(graph, ALPHA, BETA, PHERAMONE_HOLD_SPEED, MAX_ITERATIONS);
         node_iterator begin = graph.begin();
         Way finalWay = antColonyAlgorithm.findWay(ANTS_COUNT, *begin);
+        // Данные для графиков
         std::map<int, std::vector<Way>> results = antColonyAlgorithm.getPlotData();
 
-        // Векторы для данных
-        // std::vector<int> iterations;
-        // std::vector<double> lengths;
-        // Заполнение векторов данными
-        // for (const auto& [iteration, way] : results) {
-        //     iterations.push_back(iteration);
-        //     lengths.push_back(way.length);
-        // }
+        if (finalWay.length <= 0) {
+            std::cout << "Путь не найден";
+            return -1;
+        }
 
-        // if (finalWay.length <= 0) {
-        //     std::cout << "Путь не найден";
-        //     return -1;
-        // }
+        // Векторы для данных
+        std::vector<int> iterations;
+        std::vector<double> lengths;
+        // Заполнение векторов данными
+        for (const auto& [iteration, way] : results) {
+            iterations.push_back(iteration);
+            lengths.push_back(0);
+        }
 
         // Отрисовка данных
+        plt::figure(121);
         plot(results, 0, MAX_ITERATIONS);
         plt::title("Ant Path Lengths Across Iterations");
         plt::xlabel("Iteration");
         plt::ylabel("Path Length");
         plt::legend();
         plt::grid(true);
+        plt::figure(122);
+        plt::plot(iterations, lengths, "r-"); // "r-" — красная линия
+        plt::xlabel("Iterations");
+        plt::ylabel("Path Length");
+        plt::title("Path Length vs Iterations");
         plt::show();
-        // plt::plot(iterations, lengths, "r-"); // "r-" — красная линия
-        // plt::xlabel("Iterations");
-        // plt::ylabel("Path Length");
-        // plt::title("Path Length vs Iterations");
-        // plt::show();
 
         std::vector<Node> wayNodes  = finalWay.nodes;
         std:: cout << "Кратчайший путь: " << std::endl;

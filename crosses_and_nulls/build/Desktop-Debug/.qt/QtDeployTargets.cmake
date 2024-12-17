@@ -1,2 +1,0 @@
-set(__QT_DEPLOY_TARGET_crosses_and_nulls_FILE /home/vladnov138/graphs/crosses_and_nulls/build/Desktop-Debug/crosses_and_nulls)
-set(__QT_DEPLOY_TARGET_crosses_and_nulls_TYPE EXECUTABLE)
