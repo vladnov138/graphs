@@ -259,9 +259,18 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
     int alpha = INT_MIN; // Альфа - лучший результат для максимизатора
     int beta = INT_MAX;  // Бета - лучший результат для минимизатора
     int bestMove = -1;
+    bool gameOver = checkVictory(selectWinMove ? BoardCell::ENEMY : BoardCell::PLAYER);
 
-    if (currentDepth >= DEPTH || possibleMovesIdx.empty() || checkVictory(selectWinMove ? BoardCell::ENEMY : BoardCell::PLAYER)) {
-        result.push_back(getScores()); // Возвращаем оценку доски
+    if (currentDepth >= DEPTH || possibleMovesIdx.empty() || gameOver) {
+        int depthScores = getScores();
+        if (gameOver) {
+            if (bestMoveWinLength == 0 || bestMoveWinLength >= currentDepth) {
+                bestMoveWinLength = currentDepth;
+            } else {
+                depthScores *= -1;
+            }
+        }
+        result.push_back(depthScores); // Возвращаем оценку доски
         return result;
     }
 
@@ -273,15 +282,6 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
         // Рекурсивный вызов для следующего уровня
         std::vector<int> branchResult = getMovesBranch(currentDepth + 1, !selectWinMove);
         boardsState.push_back(vector);
-
-        if (moveIdx == 25 && currentDepth == 0) {
-
-            auto a = 1;
-        }
-        if (currentDepth == 0) {
-
-            auto a = 1;
-        }
         int score = branchResult[0];
         boardScores.push_back(score);
         // Откатываем ход
@@ -293,6 +293,7 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
             if (score > bestScore) {
                 bestScore = score;
                 bestMove = moveIdx;
+                // bestMoveWinLength = currentDepth;
                 alpha = std::max(alpha, bestScore); // Обновляем альфа
             }
         } else {
@@ -319,6 +320,7 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
 
 int AlphaBeta::getBestMove(BoardCell* board) {
     this->board = new BoardCell[ROWS * COLUMNS];
+    bestMoveWinLength = 0;
     for (int i = 0; i < ROWS * COLUMNS; i++) {
         this->board[i] = board[i];
         vector.push_back(board[i]);

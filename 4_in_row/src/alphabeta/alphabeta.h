@@ -7,10 +7,9 @@
 class AlphaBeta
 {
     int DEPTH;
-    int ALPHA;
-    int BETA;
     int ROWS;
     int COLUMNS;
+    int bestMoveWinLength = 0;
     BoardCell* board;
 
     std::vector<int> getPossibleMoves();
