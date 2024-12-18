@@ -16,24 +16,26 @@ class GameController : public QObject
     const int ROWS = 6;
     const int COLUMNS = 7;
     const int WINNING_SUBSEQUENCE = 4;
-    BoardCell* board = new BoardCell[ROWS * COLUMNS];
-    bool gameOver = false;
-    bool isComputerTurn = false;
-    GameEnemy* enemy;
+    BoardCell* board = new BoardCell[ROWS * COLUMNS]; // игровая доска
+    bool gameOver = false; // статус игры
+    bool isComputerTurn = false; // ход компьютера
+    bool isPlayerFirst = false; // игрок ходит первым
+    GameEnemy* enemy; // противник
 
-    bool checkHorizontalWinning(BoardCell value);
-    bool checkVerticalWinning(BoardCell value);
-    bool checkDiagonalWinning(BoardCell value);
-    bool checkWinning(BoardCell value);
+    bool checkHorizontalWinning(BoardCell value); // проверка победы по горизонтали
+    bool checkVerticalWinning(BoardCell value); // проверка победы по вертикали
+    bool checkDiagonalWinning(BoardCell value); // проверка победы по диагонали
+    bool checkWinning(BoardCell value); // проверка победы
 public:
     GameController(GameEnemy* enemy);
     ~GameController();
-    Q_INVOKABLE void makeMove(int index);
-    Q_INVOKABLE void restartGame();
-    bool getGameState() const;
+    Q_INVOKABLE void makeMove(int index); // функция хода
+    Q_INVOKABLE void restartGame(); // перезапуск игры
+    Q_INVOKABLE void setPlayerFirst(bool checked); // сеттер кто ходит первым
+    bool getGameState() const; // геттер статуса игры
 signals:
-    void cellUpdated(int index, int player);
-    void updateGameStatus(bool gameOver, bool isPlayerWin);
+    void cellUpdated(int index, int player); // обновить ячейку
+    void updateGameStatus(bool gameOver, bool isPlayerWin); // обновить статус игры
 };
 
 #endif // GAMECONTROLLER_H

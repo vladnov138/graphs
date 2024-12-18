@@ -2,6 +2,7 @@ import QtQuick
 import QtQuick.Layouts
 import QtQuick.Controls
 
+
 Window {
     width: 640
     height: 480
@@ -44,6 +45,33 @@ Window {
                     }
                 }
             }
+
+            CheckBox {
+                id: firstPlayerCheckBox
+                checked: true
+                text: "Player goes first"
+
+                contentItem: Row {
+                    spacing: 10
+
+                    Item {
+                        width: firstPlayerCheckBox.indicator.width
+                        height: firstPlayerCheckBox.indicator.height
+                    }
+
+                    Label {
+                        text: firstPlayerCheckBox.text
+                        color: "blue"
+                        font.pointSize: 12
+                        verticalAlignment: Text.AlignVCenter
+                    }
+                }
+
+                onClicked: {
+                    gameController.setPlayerFirst(checked);
+                }
+            }
+
         }
 
         GridLayout {

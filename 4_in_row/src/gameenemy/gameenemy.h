@@ -9,10 +9,10 @@
 
 class GameEnemy : public QObject
 {
-    AlphaBeta aiAlgorithm;
+    AlphaBeta aiAlgorithm; // ИИ алгоритм для игры
 public:
     GameEnemy(AlphaBeta& aiAlgorithm) : aiAlgorithm(aiAlgorithm) {};
-    int makeTurn(BoardCell* board);
+    int makeTurn(BoardCell* board); // ход противника
 };
 
 #endif // GAMEENEMY_H

@@ -12,6 +12,7 @@ GameController::GameController(GameEnemy* enemy){
 }
 
 void GameController::makeMove(int index) {
+    // Если игра окончена или сейчас ходит компьютер, то выходим
     if (gameOver || isComputerTurn) {
         return;
     }
@@ -47,6 +48,10 @@ void GameController::makeMove(int index) {
             return;
         }
     }
+}
+
+void GameController::setPlayerFirst(bool checked) {
+    isPlayerFirst = checked;
 }
 
 bool GameController::checkHorizontalWinning(BoardCell value) {
@@ -139,6 +144,13 @@ void GameController::restartGame() {
     gameOver = false;
     isComputerTurn = false;
     emit updateGameStatus(gameOver, false);
+
+    // ход компьютера
+    if (!isPlayerFirst) {
+        int idx = enemy->makeTurn(board);
+        board[idx] = BoardCell::ENEMY;
+        emit cellUpdated(idx, 2);
+    }
 }
 
 bool GameController::getGameState() const {

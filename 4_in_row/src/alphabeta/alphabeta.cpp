@@ -43,7 +43,7 @@ int AlphaBeta::evalSequence(int count) {
     case 3:
         return 1000;
     case 4:
-        return 10000;
+        return 1500;
     default:
         return 0;
     }
@@ -57,22 +57,17 @@ int AlphaBeta::getHorizontalScores() {
         for (int col = 0; col <= COLUMNS - 4; col++) {
             short enemyCount = 0;
             short playerCount = 0;
-            bool isCorrectLine = true;
             for (int i = 0; i < 4; i++) {
                 int idx = row * COLUMNS + col + i;
-                bool isPossibleIdx = std::find(possibleMoves.begin(), possibleMoves.end(), idx) != possibleMoves.end();
                 if (board[idx] == BoardCell::ENEMY) {
                     enemyCount++;
                 }
                 if (board[idx] == BoardCell::PLAYER) {
                     playerCount++;
                 }
-                if (board[idx] == BoardCell::EMPTY && !isPossibleIdx) {
-                    isCorrectLine = false;
-                }
             }
             // Оцениваем последовательность
-            if ((enemyCount > 0 && playerCount > 0) || !isCorrectLine) {
+            if (enemyCount > 0 && playerCount > 0) {
                 // Если линия содержит фишки обоих игроков - она незначима
                 continue;
             } else if (playerCount > 0) {
@@ -126,18 +121,12 @@ int AlphaBeta::getDiagonalScores() {
     for (int row = 0; row <= ROWS - 4; row++) {
         for (int col = 0; col <= COLUMNS - 4; col++) {
             short enemyCount = 0, playerCount = 0;
-            bool isCorrectLine = true;
             for (int i = 3; i >= 0; i--) {
                 int idx = (row + i) * COLUMNS + (col + 3 - i);
-                bool isPossibleIdx = std::find(possibleMoves.begin(), possibleMoves.end(), idx) != possibleMoves.end();
                 if (board[idx] == BoardCell::ENEMY) enemyCount++;
                 if (board[idx] == BoardCell::PLAYER) playerCount++;
-                if (board[idx] == BoardCell::EMPTY && isPossibleIdx) {
-                    isCorrectLine = false;
-                    break;
-                }
             }
-            if ((enemyCount > 0 && playerCount > 0) || !isCorrectLine) continue;
+            if (enemyCount > 0 && playerCount > 0) continue;
             else if (enemyCount > 0) scores += evalSequence(enemyCount);
             else if (playerCount > 0) scores -= evalSequence(playerCount);
         }
@@ -147,18 +136,12 @@ int AlphaBeta::getDiagonalScores() {
     for (int row = 0; row <= ROWS - 4; row++) {
         for (int col = 0; col <= COLUMNS - 4; col++) {
             short enemyCount = 0, playerCount = 0;
-            bool isCorrectLine = true;
             for (int i = 0; i < 4; i++) {
                 int idx = (row + i) * COLUMNS + (col + i);
-                bool isPossibleIdx = std::find(possibleMoves.begin(), possibleMoves.end(), idx) != possibleMoves.end();
                 if (board[idx] == BoardCell::ENEMY) enemyCount++;
                 if (board[idx] == BoardCell::PLAYER) playerCount++;
-                if (board[idx] == BoardCell::EMPTY && isPossibleIdx) {
-                    isCorrectLine = false;
-                    break;
-                }
             }
-            if ((enemyCount > 0 && playerCount > 0) || !isCorrectLine) continue;
+            if (enemyCount > 0 && playerCount > 0) continue;
             else if (enemyCount > 0) scores += evalSequence(enemyCount);
             else if (playerCount > 0) scores -= evalSequence(playerCount);
         }
@@ -246,7 +229,6 @@ int AlphaBeta::getScores() {
 void AlphaBeta::makeMove(int idx, BoardCell value) {
     if (idx < ROWS * COLUMNS) {
         board[idx] = value;
-        vector[idx] = value;
     }
 }
 
@@ -263,12 +245,9 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
 
     if (currentDepth >= DEPTH || possibleMovesIdx.empty() || gameOver) {
         int depthScores = getScores();
+        // Увеличиваем очки в зависимости от кол-ва ходов до победы
         if (gameOver) {
-            if (bestMoveWinLength == 0 || bestMoveWinLength >= currentDepth) {
-                bestMoveWinLength = currentDepth;
-            } else {
-                depthScores *= -1;
-            }
+            depthScores *= (DEPTH - currentDepth);
         }
         result.push_back(depthScores); // Возвращаем оценку доски
         return result;
@@ -278,15 +257,11 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
     for (auto moveIdx : possibleMovesIdx) {
         // Совершаем ход
         makeMove(moveIdx, selectWinMove ? BoardCell::ENEMY : BoardCell::PLAYER);
-        auto a = vector;
         // Рекурсивный вызов для следующего уровня
         std::vector<int> branchResult = getMovesBranch(currentDepth + 1, !selectWinMove);
-        boardsState.push_back(vector);
         int score = branchResult[0];
-        boardScores.push_back(score);
         // Откатываем ход
         makeMove(moveIdx, BoardCell::EMPTY);
-
 
         // Проверяем, нужно ли обновить лучший результат
         if (selectWinMove) {
@@ -320,23 +295,15 @@ std::vector<int> AlphaBeta::getMovesBranch(int currentDepth, bool selectWinMove)
 
 int AlphaBeta::getBestMove(BoardCell* board) {
     this->board = new BoardCell[ROWS * COLUMNS];
-    bestMoveWinLength = 0;
     for (int i = 0; i < ROWS * COLUMNS; i++) {
         this->board[i] = board[i];
-        vector.push_back(board[i]);
     }
     // Получаем лучший ход через getMovesBranch
     std::vector<int> result = getMovesBranch(0, true);
-    int score = result[0];
-    auto it = std::find(boardScores.begin(), boardScores.end(), score);
-    auto b = it - boardScores.begin();
     delete[] this->board;
-    vector.clear();
-    boardsState.clear();
-    boardScores.clear();
     return result[1]; // Возвращаем индекс лучшего хода
 }
 
-// AlphaBeta::~AlphaBeta() {
-//     delete[] board;
-// }
+AlphaBeta::~AlphaBeta() {
+    delete[] board;
+}
