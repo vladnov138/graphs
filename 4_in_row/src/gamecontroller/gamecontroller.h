@@ -19,7 +19,7 @@ class GameController : public QObject
     BoardCell* board = new BoardCell[ROWS * COLUMNS]; // игровая доска
     bool gameOver = false; // статус игры
     bool isComputerTurn = false; // ход компьютера
-    bool isPlayerFirst = false; // игрок ходит первым
+    bool isPlayerFirst = true; // игрок ходит первым
     GameEnemy* enemy; // противник
 
     bool checkHorizontalWinning(BoardCell value); // проверка победы по горизонтали

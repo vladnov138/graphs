@@ -43,7 +43,7 @@ int AlphaBeta::evalSequence(int count) {
     case 3:
         return 1000;
     case 4:
-        return 1500;
+        return 5000;
     default:
         return 0;
     }
@@ -57,13 +57,18 @@ int AlphaBeta::getHorizontalScores() {
         for (int col = 0; col <= COLUMNS - 4; col++) {
             short enemyCount = 0;
             short playerCount = 0;
+            bool isCorrectLine = true;
             for (int i = 0; i < 4; i++) {
                 int idx = row * COLUMNS + col + i;
+                bool isPossibleIdx = std::find(possibleMoves.begin(), possibleMoves.end(), idx) != possibleMoves.end();
                 if (board[idx] == BoardCell::ENEMY) {
                     enemyCount++;
                 }
                 if (board[idx] == BoardCell::PLAYER) {
                     playerCount++;
+                }
+                if (board[idx] == BoardCell::EMPTY && isPossibleIdx) {
+                    isCorrectLine = false;
                 }
             }
             // Оцениваем последовательность
@@ -72,10 +77,14 @@ int AlphaBeta::getHorizontalScores() {
                 continue;
             } else if (playerCount > 0) {
                 // Если линия принадлежит игроку
-                scores -= evalSequence(playerCount);
+                double newScore = evalSequence(playerCount);
+                // if (!isCorrectLine) newScore /= (4.0 - playerCount);
+                scores -= newScore;
             } else if (enemyCount > 0) {
                 // Если линия принадлежит противнику (компьютеру)
-                scores += evalSequence(enemyCount);
+                double newScore = evalSequence(enemyCount);
+                // if (!isCorrectLine) newScore /= (4.0 - enemyCount);
+                scores += newScore;
             }
         }
     }
@@ -85,17 +94,23 @@ int AlphaBeta::getHorizontalScores() {
 int AlphaBeta::getVerticalScores() {
     // Проверяем последовательность из 4-х ячеек по горизонтали
     int scores = 0;
+    std::vector<int> possibleMoves = getPossibleMoves();
     for (int row = 0; row <= ROWS - 4; row++) {
         for (int col = 0; col < COLUMNS; col++) {
             short enemyCount = 0;
             short playerCount = 0;
+            bool isCorrectLine = true;
             for (int i = 0; i < 4; i++) {
                 int idx = (row + i) * COLUMNS + col;
+                bool isPossibleIdx = std::find(possibleMoves.begin(), possibleMoves.end(), idx) != possibleMoves.end();
                 if (board[idx] == BoardCell::ENEMY) {
                     enemyCount++;
                 }
                 if (board[idx] == BoardCell::PLAYER) {
                     playerCount++;
+                }
+                if (board[idx] == BoardCell::EMPTY && isPossibleIdx) {
+                    isCorrectLine = false;
                 }
             }
             // Оцениваем последовательность
@@ -104,10 +119,14 @@ int AlphaBeta::getVerticalScores() {
                 continue;
             } else if (playerCount > 0) {
                 // Если линия принадлежит игроку
-                scores -= evalSequence(playerCount);
+                double newScore = evalSequence(playerCount);
+                // if (!isCorrectLine) newScore /= (4.0 - playerCount);
+                scores -= newScore;
             } else if (enemyCount > 0) {
                 // Если линия принадлежит противнику (компьютеру)
-                scores += evalSequence(enemyCount);
+                double newScore = evalSequence(enemyCount);
+                // if (!isCorrectLine) newScore /= (4.0 - enemyCount);
+                scores += newScore;
             }
         }
     }

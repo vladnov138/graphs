@@ -8,7 +8,7 @@ int main(int argc, char *argv[])
 {
     QGuiApplication app(argc, argv);
 
-    const int DEPTH = 6;
+    const int DEPTH = 7;
     AlphaBeta ab(DEPTH);
     GameEnemy enemy(ab);
     GameController gameController(&enemy);
