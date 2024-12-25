@@ -44,9 +44,9 @@ Way AntColonyAlgorithm::simulateAnt(Node* begin) {
 Way AntColonyAlgorithm::findWay(int antsCount, Node* begin) {
     Way finalWay; // найденный короткий путь
     for (int iteration = 1; iteration <= maxIterations; iteration++) {
-        std::map<std::pair<std::string, std::string>, double> wayLengths; // Key: {NodeName, NodeName}, Value: edgeLength
         std::vector<Way> currentIterationWays;
         for (int i = 0; i < antsCount; i++) {
+            std::map<std::pair<std::string, std::string>, double> wayLengths; // Key: {NodeName, NodeName}, Value: edgeLength
             Way way = simulateAnt(begin);
             // Если обошли все вершины + вернулись в стартовую
             if (way.nodes.size() == graph.getNodes().size() + 1 && way.length > 0) {
@@ -58,13 +58,18 @@ Way AntColonyAlgorithm::findWay(int antsCount, Node* begin) {
                     // Для обновления ферамонов
                     wayLengths[std::pair(way.nodes[j - 1].getName(), way.nodes[j].getName())] += 1.0 / way.length;
                 }
-
                 currentIterationWays.push_back(way);
-            } else {;
-                currentIterationWays.push_back(*new Way());
+            } else {
+                currentIterationWays.push_back(*(new Way()));
             }
+            updatePheramones(begin, wayLengths);
         }
-        updatePheramones(begin, wayLengths);
+        if (finalWay.length > 0) {
+            bestWays.push_back(finalWay);
+        }
+        // Graph copiedGraph = Graph(graph);
+        // nodesStates.push_back(copiedGraph);
+        countPheramones(begin);
         iterWays[iteration] = currentIterationWays;
     }
     return finalWay;
@@ -109,6 +114,55 @@ void AntColonyAlgorithm::updatePheramones(Node* begin, std::map<std::pair<std::s
     }
 }
 
+void AntColonyAlgorithm::countPheramones(Node* begin) {
+    std::set<std::pair<Node*, Node*>> updatedEdges; // Учет уже обновленных ребер
+    std::queue<Node*> nodeQueue;
+    std::map<std::pair<std::string, std::string>, double> iterationNodesStates;
+    double sumPheromones = 0;
+    nodeQueue.push(begin);
+
+    // BFS для обхода всех соседей
+    while (!nodeQueue.empty()) {
+        Node* currentNode = nodeQueue.front();
+        nodeQueue.pop();
+
+        // Итерация по соседям текущего узла
+        for (node_iterator it = currentNode->nb_begin(); it != currentNode->nb_end(); ++it) {
+            Node* neighbor = *it;
+
+            // Пропускаем уже просмотренные ребра
+            std::pair<Node*, Node*> edge = {currentNode, neighbor};
+            std::pair<Node*, Node*> reversedEdge = {neighbor, currentNode};
+            if (updatedEdges.find(edge) != updatedEdges.end() ||
+                !isDirectional && updatedEdges.find(reversedEdge) != updatedEdges.end()) {
+                continue;
+            }
+
+            // Рассчитываем значение нового феромона
+            double pheromone = currentNode->getPheramone(neighbor);
+            iterationNodesStates[std::make_pair(currentNode->getName(), neighbor->getName())] = pheromone;
+            sumPheromones += pheromone;
+
+            // Помечаем ребро как обновленное
+            updatedEdges.insert(edge);
+            nodeQueue.push(neighbor); // Добавляем соседа в очередь
+        }
+    }
+    for (auto it = iterationNodesStates.begin(); it != iterationNodesStates.end(); ++it) {
+        double& value = it->second;
+        value /= sumPheromones;
+    }
+    nodesStates.push_back(iterationNodesStates);
+}
+
 std::map<int, std::vector<Way>> AntColonyAlgorithm::getPlotData() const {
     return iterWays;
+}
+
+std::vector<Way> AntColonyAlgorithm::getBestWaysData() const {
+    return bestWays;
+}
+
+const std::vector<std::map<std::pair<std::string, std::string>, double>>& AntColonyAlgorithm::getNodesStates() const {
+    return nodesStates;
 }

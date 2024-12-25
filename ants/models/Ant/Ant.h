@@ -13,6 +13,8 @@ class Ant {
     Node* startPosition; // Стартовая позиция муравья
     Node* currentPosition; // Текущая позиция муравья
     std::set<Node*> visitedNodes; // Посещенные узлы
+    double probability;
+    double pheramones;
 
     double randomChoice(); // Функция для генерации рандомного числа от 0 до 1
 public:
@@ -21,6 +23,7 @@ public:
     Node* getCurrentPosition(); // Геттер текущей позиции
     void visitNode(Node* node); // Посетить узел
     std::set<Node*>* getVisitedNodes(); // Геттер посещенных узлов
+    double getPheramones(); // Геттер ферамонов от текущей к следующей вершине
 };
 
 #endif // ANT_H

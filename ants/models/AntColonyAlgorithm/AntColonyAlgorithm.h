@@ -15,6 +15,9 @@ class AntColonyAlgorithm {
     double pheramoneHoldSpeed; // Скорость испарения ферамонов
     unsigned int maxIterations = 1000;
     std::map<int, std::vector<Way>> iterWays; // результат (словарик для графика)
+    std::vector<Way> bestWays; // результат лучшего пути (для графика)
+    std::vector<std::map<std::pair<std::string, std::string>, double>> nodesStates;
+    std::vector<double> iterationSumPheromones;
     const Graph &graph;
 
     Way simulateAnt(Node* begin); // Функция симуляции муравьев
@@ -24,7 +27,10 @@ public:
     Way findWay(int antsCount, Node* begin); // Функция нахождения короткого пути
     void updatePheramones(Node* begin,
                           std::map<std::pair<std::string, std::string>, double> wayLength); // Функция обновления ферамонов
+    void countPheramones(Node* begin);
     std::map<int, std::vector<Way>> getPlotData() const; // Геттер данных для графика
+    std::vector<Way> getBestWaysData() const;
+    const std::vector<std::map<std::pair<std::string, std::string>, double>>& getNodesStates() const;
 };
 
 #endif // ANTCOLONYALGORITHM_H

@@ -17,6 +17,7 @@ private:
     void removeNeighbour(Node* neighbour);
 public:
     Node(std::string& aname);
+    Node(Node* node);
 
     const std::string& getName() const;
     const int getWeight(Node* node) const;
@@ -32,6 +33,18 @@ public:
 
     node_iterator nb_end() const {
         return neighbours.end();
+    }
+
+    bool operator < (const Node& other) const {
+        return name < other.name;
+    }
+
+    bool operator > (const Node& other) const {
+        return name > other.name;
+    }
+
+    bool operator == (const Node& other) const {
+        return name == other.name;
     }
 
     friend class Graph;

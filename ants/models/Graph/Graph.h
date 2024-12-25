@@ -22,6 +22,7 @@ public:
     void removeEdge(Node* begin, Node* end);
     void splitGraph();
     const std::set<Node*> getNodes() const;
+    const std::set<Node> copyNodes() const;
     node_iterator begin() {
         return nodes.begin();
     }

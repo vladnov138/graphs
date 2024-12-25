@@ -46,6 +46,8 @@ Node* Ant::chooseWay(const double alpha, const double beta) {
         MarkedNode markedNode = probalitiesNodes.pop();
         cumulative += markedNode.mark / sumProbability;
         if (mainProbability <= cumulative) {
+            pheramones = currentPosition->getPheramone(markedNode.node);
+            probability = markedNode.mark / sumProbability;
             return markedNode.node;
         }
     }
@@ -73,4 +75,8 @@ void Ant::visitNode(Node* node) {
 // Геттер текущего узла
 Node* Ant::getCurrentPosition() {
     return currentPosition;
+}
+
+double Ant::getPheramones() {
+    return pheramones;
 }

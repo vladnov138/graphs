@@ -3,9 +3,32 @@
 #include "../../exceptions/FileNotOpenException.h"
 #include "../../exceptions/GraphException.h"
 
-Graph::Graph(const Graph *graph)
-{
-    nodes = (*graph).nodes;
+// Graph::Graph(const Graph *graph)
+// {
+//     nodes = (*graph).nodes;
+// }
+
+Graph::Graph(const Graph* graph) {
+    this->isDirectional = graph->isDirectional;
+
+    // Создаем отображение старых узлов на их копии
+    std::map<Node*, Node*> nodeMapping;
+
+    // 1. Копируем узлы
+    for (const Node* oldNode : graph->nodes) {
+        Node* newNode = new Node(*oldNode); // Используем копирующий конструктор Node
+        nodes.insert(newNode);
+        nodeMapping[const_cast<Node*>(oldNode)] = newNode;
+    }
+
+    // 2. Восстанавливаем связи (соседей и феромоны)
+    for (const Node* oldNode : graph->nodes) {
+        Node* newNode = nodeMapping[const_cast<Node*>(oldNode)];
+        for (const auto& [neighbor, pheromone] : oldNode->neighbours_pheramones) {
+            Node* newNeighbor = nodeMapping[neighbor]; // Получаем копию соседа
+            newNode->addNeighbour(newNeighbor, pheromone);
+        }
+    }
 }
 
 Graph::Graph(const std::string filename, bool isDirectional)
@@ -119,4 +142,14 @@ void Graph::splitGraph()
 
 const std::set<Node*> Graph::getNodes() const {
     return nodes;
+}
+
+const std::set<Node> Graph::copyNodes() const {
+    std::set<Node> nodeCopies;
+    for (const Node* node : nodes) {
+        if (node) {
+            nodeCopies.insert(*node); // Создаем копию узла и добавляем в множество
+        }
+    }
+    return nodeCopies;
 }
